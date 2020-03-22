@@ -29,6 +29,14 @@ class MoneySpentViewController: UIViewController, AVAudioPlayerDelegate, canRece
         super.viewDidLoad()
         // checkLocationServices()
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toMapScreen" {
+            let vc = segue.destination as! MapScreen
+            vc.delegate = self
+        }
+        
+    }
    
     // send data
     @IBAction func BackButton(_ sender: Any) {

@@ -38,6 +38,10 @@ class MoneyTrackViewController: UIViewController, canReceive {
     override func viewDidLoad() {
         super.viewDidLoad()
         AmountLabel.text = "\(budgetValue)"
+        print(endDateValue)
+        if endDateValue < Date() {
+            createAlert(title: "End of Date", message: "You should set a new budget.")
+        }
     }
     @IBAction func addButton(_ sender: Any) {
         performSegue(withIdentifier: "toMoneySpent", sender: self)
@@ -50,15 +54,7 @@ class MoneyTrackViewController: UIViewController, canReceive {
         }
         
     }
-    override func viewWillAppear(_ animated: Bool) {
-        var date = Date()
-        print(endDateValue)
-        if endDateValue < date {
-            createAlert(title: "End of Date", message: "You should set a new budget.")
-        }
-    }
-
-    
+ 
     func createAlert(title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let action = UIAlertAction(title: "OK", style: .default) { (action) in
