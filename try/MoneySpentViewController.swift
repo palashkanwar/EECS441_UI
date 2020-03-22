@@ -16,16 +16,18 @@ protocol canReceive {
     func passDataBack(data: Double)
 }
 
-class MoneySpentViewController: UIViewController {
-
+class MoneySpentViewController: UIViewController, AVAudioPlayerDelegate, canReceiveAddress {
+    @IBOutlet weak var locationTxt: UITextField!
+    func passDataBack(data: String) {
+        locationTxt.text = "\(data)"
+    }
     var delegate:canReceive?
     @IBOutlet weak var spendingTxt: UITextField!
     var spendingValueFinal = 0.00
     @IBOutlet weak var warningLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
+        // checkLocationServices()
     }
    
     // send data
@@ -90,5 +92,8 @@ class MoneySpentViewController: UIViewController {
         
         requestSpeechAuth()
     }
+    //******************************************//
+    
     
 }
+
