@@ -27,7 +27,7 @@ class MoneySpentViewController: UIViewController, AVAudioPlayerDelegate, canRece
     @IBOutlet weak var warningLabel: UILabel!
     override func viewDidLoad() {
         super.viewDidLoad()
-        // checkLocationServices()
+        activitySpinner.isHidden = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
