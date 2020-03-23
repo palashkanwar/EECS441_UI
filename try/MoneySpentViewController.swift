@@ -11,6 +11,7 @@ import Speech
 import AVFoundation
 import CoreLocation
 import MapKit
+import FirebaseDatabase
 
 protocol canReceive {
     func passDataBack(data: Double)
@@ -56,6 +57,10 @@ class MoneySpentViewController: UIViewController, AVAudioPlayerDelegate, canRece
         } else {
             warningLabel.text = "Please enter a valid number!"
         }
+        // push data to db
+        let red = Database.database().reference()
+        
+        red.child("claudia").childByAutoId().setValue(["amount":spendingTxt.text, "location":locationTxt.text])
         
     }
     //******************************************//
