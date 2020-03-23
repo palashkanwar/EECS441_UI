@@ -14,7 +14,7 @@
 		8134E8DF2418495400925F47 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8134E8DE2418495400925F47 /* Assets.xcassets */; };
 		8134E8E22418495400925F47 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8134E8E02418495400925F47 /* LaunchScreen.storyboard */; };
 		8134E8ED2418495500925F47 /* tryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8134E8EC2418495500925F47 /* tryTests.swift */; };
-		813F587124281ACD0051FC21 /* MapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813F587024281ACD0051FC21 /* MapScreen.swift */; };
+		813F5875242879630051FC21 /* MapScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 813F5874242879630051FC21 /* MapScreen.swift */; };
 		817FA03024193045002292FD /* MoneySpentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817FA02F24193045002292FD /* MoneySpentViewController.swift */; };
 		817FA03224193071002292FD /* MoneyTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817FA03124193071002292FD /* MoneyTrackViewController.swift */; };
 		817FA0342419309D002292FD /* SetBudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817FA0332419309D002292FD /* SetBudgetViewController.swift */; };
@@ -42,7 +42,7 @@
 		8134E8E82418495500925F47 /* tryTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = tryTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		8134E8EC2418495500925F47 /* tryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = tryTests.swift; sourceTree = "<group>"; };
 		8134E8EE2418495500925F47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		813F587024281ACD0051FC21 /* MapScreen.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MapScreen.swift; path = "../../../Downloads/Reverse-Geo-Code/Reverse-Geo-Code/MapScreen.swift"; sourceTree = "<group>"; };
+		813F5874242879630051FC21 /* MapScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapScreen.swift; sourceTree = "<group>"; };
 		817FA02F24193045002292FD /* MoneySpentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneySpentViewController.swift; sourceTree = "<group>"; };
 		817FA03124193071002292FD /* MoneyTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyTrackViewController.swift; sourceTree = "<group>"; };
 		817FA0332419309D002292FD /* SetBudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBudgetViewController.swift; sourceTree = "<group>"; };
@@ -87,7 +87,6 @@
 		8134E8D42418495300925F47 /* try */ = {
 			isa = PBXGroup;
 			children = (
-				813F587024281ACD0051FC21 /* MapScreen.swift */,
 				8134E8D52418495300925F47 /* AppDelegate.swift */,
 				8134E8D72418495300925F47 /* SceneDelegate.swift */,
 				8134E8D92418495300925F47 /* ViewController.swift */,
@@ -98,6 +97,7 @@
 				817FA02F24193045002292FD /* MoneySpentViewController.swift */,
 				817FA03124193071002292FD /* MoneyTrackViewController.swift */,
 				817FA0332419309D002292FD /* SetBudgetViewController.swift */,
+				813F5874242879630051FC21 /* MapScreen.swift */,
 			);
 			path = try;
 			sourceTree = "<group>";
@@ -215,7 +215,7 @@
 				817FA03224193071002292FD /* MoneyTrackViewController.swift in Sources */,
 				8134E8DA2418495300925F47 /* ViewController.swift in Sources */,
 				817FA0342419309D002292FD /* SetBudgetViewController.swift in Sources */,
-				813F587124281ACD0051FC21 /* MapScreen.swift in Sources */,
+				813F5875242879630051FC21 /* MapScreen.swift in Sources */,
 				8134E8D62418495300925F47 /* AppDelegate.swift in Sources */,
 				817FA03024193045002292FD /* MoneySpentViewController.swift in Sources */,
 				8134E8D82418495300925F47 /* SceneDelegate.swift in Sources */,
