@@ -65,28 +65,37 @@ class SetBudgetViewController: UIViewController {
     }
     
     @IBAction func SubmitClicked(_ sender: Any) {
+        var pass1 = true
+        var pass2 = true
+        let budgetDoubleValue:Double = Double(budgetTxt.text!) as! Double
         if budgetTxt.text == nil {
+            print("1")
             warningLabel.text = "Please enter a valid number."
+            pass1 = false
+        } else if (budgetDoubleValue <= 0.0) {
+            print("2")
+            warningLabel.text = "Budget should be larger than 0."
+            
+            pass1 = false
         }
         if EndDateTxt.text == nil {
             warninglabel2.text = "Please pick an ending date."
-        } else if let budgetDoubleValue = Double(budgetTxt.text!) {
-            if budgetDoubleValue <= 0 {
-                warningLabel.text = "Budget should be larger than 0."
-            } else {
-                warningLabel.text = ""
-                warninglabel2.text = ""
-                performSegue(withIdentifier: "submitBudgetValue", sender: self)
-            }
-            
+            pass2 = false
+        } else if (endDateValue < Date()) {
+            warninglabel2.text = "Please pick a valid date."
+            pass2 = false
+        }
+        if (pass1 && pass2) {
+            warninglabel2.text = ""
+            warningLabel.text = ""
+            performSegue(withIdentifier: "submitBudgetValue", sender: self)
         }
     }
 
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  "submitBudgetValue" {
             var vc = segue.destination as! MoneyTrackViewController
-            guard var budgetDoubleValue = Double(self.budgetValue) else {return}
+            let budgetDoubleValue:Double = Double(budgetTxt.text!) as! Double
             vc.budgetValue = budgetDoubleValue
             vc.endDateValue = self.endDateValue
         }

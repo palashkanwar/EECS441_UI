@@ -18,10 +18,14 @@ class MoneyTrackViewController: UIViewController, canReceive {
     var startDateValue = Date()
     var endDateValue = Date()
     var spending = 0.0
+    
     func passDataBack(data: Double) {
         spending = data
         budgetValue -= spending
         AmountLabel.text = "\(budgetValue)"
+        if endDateValue < Date() {
+            createAlert(title: "End Session", message: "The current session ends. Please start a new session.")
+        }
         if budgetValue < 20 {
             AmountLabel.textColor = UIColor.red
             AmountLabel.font = AmountLabel.font.withSize(60)
@@ -38,9 +42,8 @@ class MoneyTrackViewController: UIViewController, canReceive {
     override func viewDidLoad() {
         super.viewDidLoad()
         AmountLabel.text = "\(budgetValue)"
-        print(endDateValue)
         if endDateValue < Date() {
-            createAlert(title: "End of Date", message: "You should set a new budget.")
+            createAlert(title: "End Session", message: "The current session ends. Please start a new session.")
         }
     }
     @IBAction func addButton(_ sender: Any) {
