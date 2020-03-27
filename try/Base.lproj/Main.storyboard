@@ -315,7 +315,8 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 </state>
                                 <connections>
-                                    <segue destination="UB7-qB-HDD" kind="presentation" id="PQp-WY-Uou"/>
+                                    <action selector="FinishtoSummary:" destination="waI-nx-3ml" eventType="touchUpInside" id="V7z-2E-ZBl"/>
+                                    <segue destination="UB7-qB-HDD" kind="presentation" identifier="ToSummary" id="K0p-Ke-E2w"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -584,7 +585,7 @@
         <!--Summary View Controller-->
         <scene sceneID="Vk2-P1-gHK">
             <objects>
-                <tableViewController id="UB7-qB-HDD" customClass="SummaryViewController" sceneMemberID="viewController">
+                <tableViewController id="UB7-qB-HDD" customClass="SummaryViewController" customModule="try" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="wqG-uf-Pzl">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -605,7 +606,6 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="UITableView" destination="wqG-uf-Pzl" id="p9k-6V-dhd"/>
                         <outlet property="tableView" destination="wqG-uf-Pzl" id="raq-2b-oWh"/>
                     </connections>
                 </tableViewController>
@@ -625,7 +625,7 @@
         <image name="rectangle.fill" catalog="system" width="64" height="46"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="5FA-Ct-dPQ"/>
+        <segue reference="aJU-0z-YTJ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
 </document>

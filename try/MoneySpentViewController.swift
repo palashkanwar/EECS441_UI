@@ -44,6 +44,7 @@ class MoneySpentViewController: UIViewController, AVAudioPlayerDelegate, canRece
         dismiss(animated: true, completion: nil)
         self.navigationController?.popViewController(animated: true)
     }
+    
     @IBAction func SubmitClicked(_ sender: Any) {
         if let spendingValue = Double(spendingTxt.text!) {
             if spendingValue <= 0 {
@@ -57,10 +58,10 @@ class MoneySpentViewController: UIViewController, AVAudioPlayerDelegate, canRece
         } else {
             warningLabel.text = "Please enter a valid number!"
         }
-        // push data to db
-        let red = Database.database().reference()
+        // push data to database
+        let ref = Database.database().reference()
         
-        red.child("claudia").childByAutoId().setValue(["amount":spendingTxt.text, "location":locationTxt.text])
+        ref.child("claudia").childByAutoId().setValue(["amount":spendingTxt.text, "location":locationTxt.text])
         
     }
     //******************************************//

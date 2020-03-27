@@ -39,6 +39,7 @@ class MoneyTrackViewController: UIViewController, canReceive {
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         }
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         AmountLabel.text = "\(budgetValue)"
@@ -46,6 +47,11 @@ class MoneyTrackViewController: UIViewController, canReceive {
             createAlert(title: "End Session", message: "The current session ends. Please start a new session.")
         }
     }
+    
+    @IBAction func FinishtoSummary(_ sender: Any) {
+        performSegue(withIdentifier: "ToSummary", sender: self)
+    }
+    
     @IBAction func addButton(_ sender: Any) {
         performSegue(withIdentifier: "toMoneySpent", sender: self)
     }
