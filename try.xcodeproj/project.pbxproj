@@ -22,6 +22,7 @@
 		817FA03024193045002292FD /* MoneySpentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817FA02F24193045002292FD /* MoneySpentViewController.swift */; };
 		817FA03224193071002292FD /* MoneyTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817FA03124193071002292FD /* MoneyTrackViewController.swift */; };
 		817FA0342419309D002292FD /* SetBudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817FA0332419309D002292FD /* SetBudgetViewController.swift */; };
+		81DB140D2447A927005BF392 /* AddBudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DB140C2447A927005BF392 /* AddBudgetViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		817FA02F24193045002292FD /* MoneySpentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneySpentViewController.swift; sourceTree = "<group>"; };
 		817FA03124193071002292FD /* MoneyTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyTrackViewController.swift; sourceTree = "<group>"; };
 		817FA0332419309D002292FD /* SetBudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBudgetViewController.swift; sourceTree = "<group>"; };
+		81DB140C2447A927005BF392 /* AddBudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetViewController.swift; sourceTree = "<group>"; };
 		905F4DCF814B39CAFBC7533A /* Pods_try.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_try.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F585791D3021B1CA975129E7 /* Pods-try.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-try.debug.xcconfig"; path = "Target Support Files/Pods-try/Pods-try.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,6 +129,7 @@
 				817FA03124193071002292FD /* MoneyTrackViewController.swift */,
 				817FA0332419309D002292FD /* SetBudgetViewController.swift */,
 				813F5874242879630051FC21 /* MapScreen.swift */,
+				81DB140C2447A927005BF392 /* AddBudgetViewController.swift */,
 			);
 			path = try;
 			sourceTree = "<group>";
@@ -319,6 +322,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				817FA03224193071002292FD /* MoneyTrackViewController.swift in Sources */,
+				81DB140D2447A927005BF392 /* AddBudgetViewController.swift in Sources */,
 				8134E8DA2418495300925F47 /* ViewController.swift in Sources */,
 				817FA0342419309D002292FD /* SetBudgetViewController.swift in Sources */,
 				6D13AF5724293FB800D71A4E /* SummaryViewController.swift in Sources */,

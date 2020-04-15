@@ -11,7 +11,11 @@ import FirebaseDatabase
 
 class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-
+    @IBAction func BackButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @IBOutlet var tableView: UITableView!
     // Data model: These strings will be the data for the table view cells
     // var animals: [String] = ["$4 at courtyard", "$2 at north campus", "$32 at home"]
