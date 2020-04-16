@@ -17,8 +17,10 @@ protocol canReceive {
     func passDataBack(data: Double)
 }
 
-class MoneySpentViewController: UIViewController, AVAudioPlayerDelegate, canReceiveAddress {
+class MoneySpentViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVAudioPlayerDelegate, canReceiveAddress {
+    @IBOutlet weak var receiptView: UIImageView!
     @IBOutlet weak var locationTxt: UITextField!
+    var imagePicker:ImagePicker!
     func passDataBack(data: String) {
         locationTxt.text = "\(data)"
     }
@@ -29,6 +31,7 @@ class MoneySpentViewController: UIViewController, AVAudioPlayerDelegate, canRece
     override func viewDidLoad() {
         super.viewDidLoad()
         activitySpinner.isHidden = true
+        self.imagePicker = ImagePicker(presentationController: self, delegate: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -64,6 +67,11 @@ class MoneySpentViewController: UIViewController, AVAudioPlayerDelegate, canRece
         ref.child("claudia").childByAutoId().setValue(["amount":spendingTxt.text, "location":locationTxt.text])
         
     }
+    @IBAction func importImage(_ sender: UIButton) {
+        self.imagePicker.present(from:sender)
+    }
+    
+
     //******************************************//
     
     // record number
@@ -110,4 +118,8 @@ class MoneySpentViewController: UIViewController, AVAudioPlayerDelegate, canRece
     
     
 }
-
+extension MoneySpentViewController:ImagePickerDelegate{
+    func didSelect(image: UIImage?) {
+        self.receiptView.image = image
+    }
+}
