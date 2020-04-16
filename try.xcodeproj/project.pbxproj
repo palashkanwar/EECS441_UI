@@ -23,6 +23,7 @@
 		817FA03224193071002292FD /* MoneyTrackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817FA03124193071002292FD /* MoneyTrackViewController.swift */; };
 		817FA0342419309D002292FD /* SetBudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 817FA0332419309D002292FD /* SetBudgetViewController.swift */; };
 		81DB140D2447A927005BF392 /* AddBudgetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DB140C2447A927005BF392 /* AddBudgetViewController.swift */; };
+		81DE09292448AAAB0022987E /* imagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81DE09282448AAAB0022987E /* imagePicker.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -58,6 +59,7 @@
 		817FA03124193071002292FD /* MoneyTrackViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoneyTrackViewController.swift; sourceTree = "<group>"; };
 		817FA0332419309D002292FD /* SetBudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetBudgetViewController.swift; sourceTree = "<group>"; };
 		81DB140C2447A927005BF392 /* AddBudgetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddBudgetViewController.swift; sourceTree = "<group>"; };
+		81DE09282448AAAB0022987E /* imagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = imagePicker.swift; sourceTree = "<group>"; };
 		905F4DCF814B39CAFBC7533A /* Pods_try.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_try.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F585791D3021B1CA975129E7 /* Pods-try.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-try.debug.xcconfig"; path = "Target Support Files/Pods-try/Pods-try.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -127,6 +129,7 @@
 				8134E8E32418495400925F47 /* Info.plist */,
 				817FA02F24193045002292FD /* MoneySpentViewController.swift */,
 				817FA03124193071002292FD /* MoneyTrackViewController.swift */,
+				81DE09282448AAAB0022987E /* imagePicker.swift */,
 				817FA0332419309D002292FD /* SetBudgetViewController.swift */,
 				813F5874242879630051FC21 /* MapScreen.swift */,
 				81DB140C2447A927005BF392 /* AddBudgetViewController.swift */,
@@ -328,6 +331,7 @@
 				6D13AF5724293FB800D71A4E /* SummaryViewController.swift in Sources */,
 				813F5875242879630051FC21 /* MapScreen.swift in Sources */,
 				8134E8D62418495300925F47 /* AppDelegate.swift in Sources */,
+				81DE09292448AAAB0022987E /* imagePicker.swift in Sources */,
 				817FA03024193045002292FD /* MoneySpentViewController.swift in Sources */,
 				8134E8D82418495300925F47 /* SceneDelegate.swift in Sources */,
 			);
