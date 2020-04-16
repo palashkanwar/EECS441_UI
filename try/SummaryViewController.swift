@@ -9,32 +9,15 @@ import Foundation
 import UIKit
 import FirebaseDatabase
 
-class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class summaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
-    @IBAction func BackButton(_ sender: Any) {
-        dismiss(animated: true, completion: nil)
-        self.navigationController?.popViewController(animated: true)
-    }
     
     @IBOutlet var tableView: UITableView!
-    // Data model: These strings will be the data for the table view cells
-    // var animals: [String] = ["$4 at courtyard", "$2 at north campus", "$32 at home"]
-    var pastdata = [String]()
-    // cell reuse id (cells that scroll out of view can be reused)
-    let cellReuseIdentifier = "cell"
- 
-    // don't forget to hook this up from the storyboard
-    
+    var transactions: [Transaction] = []
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Register the table view cell class and its reuse id
-        self.tableView.register(UITableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
-
-        // (optional) include this line if you want to remove the extra empty cell divider lines
-        // self.tableView.tableFooterView = UIView()
-
-        // This view controller itself will provide the delegate methods and row data for the table view.
         tableView.delegate = self
         tableView.dataSource = self
         loadData()
@@ -42,19 +25,19 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     // number of rows in table view
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.pastdata.count
+        print(transactions.count)
+        return self.transactions.count
     }
 
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-
+        let transaction = transactions[indexPath.row]
         // create a new cell if needed or reuse an old one
-        let cell:UITableViewCell = (self.tableView.dequeueReusableCell(withIdentifier: cellReuseIdentifier) as UITableViewCell?)!
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionCell") as! TransactionCell
+        print(transaction.location)
+        cell.setTransaction(transaction: transaction)
 
-        // set the text from the data model
-        cell.textLabel?.text = self.pastdata[indexPath.row]
-        print(self.pastdata[indexPath.row])
-        return cell
+       return cell
     }
 
     // method to run when table view cell is tapped
@@ -65,21 +48,24 @@ class SummaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     func loadData() {
         
         let ref = Database.database().reference()
-        
         ref.child("claudia").observe(DataEventType.value) { (snapshot) in
-            //print(snapshot)
-            
             for transaction in snapshot.children.allObjects as![DataSnapshot] {
                 let transactionObject = transaction.value as? [String:String]
-                let amount = String((transactionObject?["amount"])!)
+                let amount = "$" + String((transactionObject?["amount"])!)
                 let location = String((transactionObject?["location"])!)
-                let message = "$" + amount + " at " + location
-                self.pastdata.append(message)
-                //print(self.pastdata)
+                let tran_object = Transaction(amount: amount, location: location)
+                self.transactions.append(tran_object)
                 self.tableView.reloadData()
+
             }
         }
             
     }
+    
+    @IBAction func BackButton(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
+        self.navigationController?.popViewController(animated: true)
+    }
+
         
 }

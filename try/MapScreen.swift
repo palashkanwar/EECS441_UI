@@ -134,11 +134,9 @@ extension MapScreen: MKMapViewDelegate {
             let streetNumber = placemark.subThoroughfare ?? ""
             let streetName = placemark.thoroughfare ?? ""
             let cityName = placemark.locality ?? ""
-            let stateName = placemark.administrativeArea ?? ""
-            let country = placemark.country ?? ""
             
             DispatchQueue.main.async {
-                self.addressLabel.text = "\(streetNumber) \(streetName), \(cityName), \(stateName), \(country)"
+                self.addressLabel.text = "\(streetNumber) \(streetName), \(cityName)"
             }
         }
     }
