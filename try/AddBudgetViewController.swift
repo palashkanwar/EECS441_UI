@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseDatabase
 class AddBudgetViewController: UIViewController {
 
 
@@ -17,9 +18,15 @@ class AddBudgetViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
 
+    @IBAction func submitBtn(_ sender: Any) {
+        let ref = Database.database().reference()
+        ref.child("claudia").childByAutoId().setValue(["amount":self.addBudgetTxt.text, "location":"", "receipt_url":"", "attribute":"+"] as [String:Any])
+    }
     @IBAction func backBtn(_ sender: Any) {
         dismiss(animated: true, completion: nil)
         self.navigationController?.popViewController(animated: true)
+        // push data
+        
     }
     
 }

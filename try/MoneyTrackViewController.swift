@@ -8,6 +8,7 @@
 
 import UIKit
 import UserNotifications
+import FirebaseDatabase
 
 class MoneyTrackViewController: UIViewController, canReceive {
     
@@ -48,6 +49,10 @@ class MoneyTrackViewController: UIViewController, canReceive {
         }
     }
     
+    @IBAction func FinishBtn(_ sender: Any) {
+        let ref = Database.database().reference().child("claudia")
+        ref.removeValue()
+    }
     @IBAction func FinishtoSummary(_ sender: Any) {
         performSegue(withIdentifier: "ToSummary", sender: self)
     }

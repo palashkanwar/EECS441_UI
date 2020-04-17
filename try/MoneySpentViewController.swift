@@ -12,6 +12,7 @@ import AVFoundation
 import CoreLocation
 import MapKit
 import FirebaseDatabase
+import FirebaseStorage
 
 protocol canReceive {
     func passDataBack(data: Double)
@@ -48,6 +49,16 @@ class MoneySpentViewController: UIViewController, UIImagePickerControllerDelegat
         self.navigationController?.popViewController(animated: true)
     }
     
+    // Some firebase function
+    
+//    func uploadImage(_ image:UIIamge, completion: @escaping <#type#>){
+//        let storageRef = Storage.storage().reference().child("myimage.png")
+//        let imgData = receiptView.image?.pngData()
+//        let metaData = StorageMetadata()
+//        metaData.contentType = "imge/png"
+//        storageRef.putData(imgData!, metadata: metaData)
+//    }
+    
     @IBAction func SubmitClicked(_ sender: Any) {
         if let spendingValue = Double(spendingTxt.text!) {
             if spendingValue <= 0 {
@@ -62,9 +73,49 @@ class MoneySpentViewController: UIViewController, UIImagePickerControllerDelegat
             warningLabel.text = "Please enter a valid number!"
         }
         // push data to database
-        let ref = Database.database().reference()
+        if receiptView.image == nil {
+            let ref = Database.database().reference()
+            ref.child("claudia").childByAutoId().setValue(["amount":self.spendingTxt.text, "location":self.locationTxt.text, "receipt_url":"", "attribute":"-"] as [String:Any])
+        }
+        else {
+            // push image to storage
+            var img_url = ""
+            var file_name = randomString(length: 6)
+            file_name = "claudia/" + file_name + ".png"
+            let storageRef = Storage.storage().reference().child(file_name)
+            let imgData = receiptView.image?.pngData()
+            let metaData = StorageMetadata()
+            metaData.contentType = "imge/png"
+            storageRef.putData(imgData!, metadata: metaData) { (metadata, err) in
+                if err == nil{
+                    print("error in save img")
+                    storageRef.downloadURL(completion: { (url, error) in
+                        if error != nil{
+                            print("Failed to download url:", error!)
+                            return
+                        } else {
+                            //Do something with url
+                            print("success download url")
+                            img_url = url?.absoluteString ?? ""
+                            print(url!)
+                            print(img_url)
+                            // push data to database
+                            let ref = Database.database().reference()
+                            ref.child("claudia").childByAutoId().setValue(["amount":self.spendingTxt.text, "location":self.locationTxt.text, "receipt_url":img_url, "attribute":"-"] as [String:Any])
+                        }
+                    })
+                } else {
+                    print(err)
+                    print("error in save image")
+                }
+            }
+        }
+    
         
-        ref.child("claudia").childByAutoId().setValue(["amount":spendingTxt.text, "location":locationTxt.text])
+        
+//        // push data to database
+//        let ref = Database.database().reference()
+//        ref.child("claudia").childByAutoId().setValue(["amount":spendingTxt.text, "location":locationTxt.text, "receipt_url":img_url, "attribute":"-"] as [String:Any])
         
     }
     @IBAction func importImage(_ sender: UIButton) {
@@ -113,6 +164,10 @@ class MoneySpentViewController: UIViewController, UIImagePickerControllerDelegat
         activitySpinner.startAnimating()
         
         requestSpeechAuth()
+    }
+    func randomString(length: Int) -> String {
+      let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+      return String((0..<length).map{ _ in letters.randomElement()! })
     }
     //******************************************//
     
