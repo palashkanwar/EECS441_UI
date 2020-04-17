@@ -10,7 +10,7 @@ import UIKit
 import UserNotifications
 import FirebaseDatabase
 
-class MoneyTrackViewController: UIViewController, canReceive {
+class MoneyTrackViewController: UIViewController, canReceive, canReceiveBudget {
     
 
     @IBOutlet weak var AmountLabel: UILabel!
@@ -19,6 +19,13 @@ class MoneyTrackViewController: UIViewController, canReceive {
     var startDateValue = Date()
     var endDateValue = Date()
     var spending = 0.0
+    var addbudget = 0.0
+    
+    func passBudgetBack(data: Double) {
+        addbudget = data
+        budgetValue += addbudget
+        AmountLabel.text = "\(budgetValue)"
+    }
     
     func passDataBack(data: Double) {
         spending = data
@@ -66,7 +73,10 @@ class MoneyTrackViewController: UIViewController, canReceive {
             let vc = segue.destination as! MoneySpentViewController
             vc.delegate = self
         }
-        
+        if segue.identifier == "toAddBudget" {
+            let vc = segue.destination as! AddBudgetViewController
+            vc.delegate = self
+        }
     }
  
     func createAlert(title: String, message: String) {

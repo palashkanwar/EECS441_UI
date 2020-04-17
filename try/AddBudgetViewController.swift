@@ -8,10 +8,17 @@
 
 import UIKit
 import FirebaseDatabase
+
+protocol canReceiveBudget {
+    func passBudgetBack(data: Double)
+}
+
 class AddBudgetViewController: UIViewController {
 
 
+    @IBOutlet weak var warningLabel: UILabel!
     @IBOutlet weak var addBudgetTxt: UITextField!
+    var delegate: canReceiveBudget?
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -19,8 +26,26 @@ class AddBudgetViewController: UIViewController {
     }
 
     @IBAction func submitBtn(_ sender: Any) {
-        let ref = Database.database().reference()
-        ref.child("claudia").childByAutoId().setValue(["amount":self.addBudgetTxt.text, "location":"", "receipt_url":"", "attribute":"+"] as [String:Any])
+        if let budgetValue = Double(addBudgetTxt.text!) {
+            if budgetValue <= 0 {
+                warningLabel.text = "Please enter a valid number!"
+            } else {
+                warningLabel.text = ""
+                delegate?.passBudgetBack(data: budgetValue)
+                
+                // pass date to database
+                
+                let ref = Database.database().reference()
+                ref.child("claudia").childByAutoId().setValue(["amount":self.addBudgetTxt.text, "location":"", "receipt_url":"", "attribute":"+"] as [String:Any])
+                
+                // dismiss current window
+                dismiss(animated: true, completion: nil)
+                self.navigationController?.popViewController(animated: true)
+            }
+        } else {
+            warningLabel.text = "Please enter a valid number!"
+        }
+        
     }
     @IBAction func backBtn(_ sender: Any) {
         dismiss(animated: true, completion: nil)

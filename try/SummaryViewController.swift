@@ -51,10 +51,18 @@ class summaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         ref.child("claudia").observe(DataEventType.value) { (snapshot) in
             for transaction in snapshot.children.allObjects as![DataSnapshot] {
                 let transactionObject = transaction.value as? [String:String]
+                let attribute = String((transactionObject?["location"])!)
                 let amount = "$" + String((transactionObject?["amount"])!)
+            
                 let location = String((transactionObject?["location"])!)
+                let image = transactionObject?["image"]!
                 let tran_object = Transaction(amount: amount, location: location)
                 self.transactions.append(tran_object)
+               
+                
+                
+                
+                
                 self.tableView.reloadData()
 
             }

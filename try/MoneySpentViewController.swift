@@ -21,6 +21,7 @@ protocol canReceive {
 class MoneySpentViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVAudioPlayerDelegate, canReceiveAddress {
     @IBOutlet weak var receiptView: UIImageView!
     @IBOutlet weak var locationTxt: UITextField!
+    @IBOutlet weak var warningLabel2: UILabel!
     var imagePicker:ImagePicker!
     func passDataBack(data: String) {
         locationTxt.text = "\(data)"
@@ -49,74 +50,70 @@ class MoneySpentViewController: UIViewController, UIImagePickerControllerDelegat
         self.navigationController?.popViewController(animated: true)
     }
     
-    // Some firebase function
-    
-//    func uploadImage(_ image:UIIamge, completion: @escaping <#type#>){
-//        let storageRef = Storage.storage().reference().child("myimage.png")
-//        let imgData = receiptView.image?.pngData()
-//        let metaData = StorageMetadata()
-//        metaData.contentType = "imge/png"
-//        storageRef.putData(imgData!, metadata: metaData)
-//    }
-    
     @IBAction func SubmitClicked(_ sender: Any) {
+        var pass = true
         if let spendingValue = Double(spendingTxt.text!) {
             if spendingValue <= 0 {
                 warningLabel.text = "Please enter a valid number!"
-            } else {
-                warningLabel.text = ""
-                delegate?.passDataBack(data: spendingValue)
-                dismiss(animated: true, completion: nil)
-                self.navigationController?.popViewController(animated: true)
+                pass = false
             }
-        } else {
-            warningLabel.text = "Please enter a valid number!"
-        }
-        // push data to database
-        if receiptView.image == nil {
-            let ref = Database.database().reference()
-            ref.child("claudia").childByAutoId().setValue(["amount":self.spendingTxt.text, "location":self.locationTxt.text, "receipt_url":"", "attribute":"-"] as [String:Any])
         }
         else {
-            // push image to storage
-            var img_url = ""
-            var file_name = randomString(length: 6)
-            file_name = "claudia/" + file_name + ".png"
-            let storageRef = Storage.storage().reference().child(file_name)
-            let imgData = receiptView.image?.pngData()
-            let metaData = StorageMetadata()
-            metaData.contentType = "imge/png"
-            storageRef.putData(imgData!, metadata: metaData) { (metadata, err) in
-                if err == nil{
-                    print("error in save img")
-                    storageRef.downloadURL(completion: { (url, error) in
-                        if error != nil{
-                            print("Failed to download url:", error!)
-                            return
-                        } else {
-                            //Do something with url
-                            print("success download url")
-                            img_url = url?.absoluteString ?? ""
-                            print(url!)
-                            print(img_url)
-                            // push data to database
-                            let ref = Database.database().reference()
-                            ref.child("claudia").childByAutoId().setValue(["amount":self.spendingTxt.text, "location":self.locationTxt.text, "receipt_url":img_url, "attribute":"-"] as [String:Any])
-                        }
-                    })
-                } else {
-                    print(err)
-                    print("error in save image")
+            warningLabel.text = "Please enter a number."
+            pass = false
+        }
+        if let text = locationTxt.text, text.isEmpty {
+            warningLabel2.text = "Please enter a valid address!"
+            pass = false
+        }
+        
+        if pass {
+            var spendingValue = Double(spendingTxt.text!) ?? 0
+            warningLabel.text = ""
+            warningLabel2.text = ""
+            delegate?.passDataBack(data: spendingValue)
+            
+            // push data to database
+            if receiptView.image == nil {
+                let ref = Database.database().reference()
+                ref.child("claudia").childByAutoId().setValue(["amount":self.spendingTxt.text, "location":self.locationTxt.text, "receipt_url":"", "attribute":"-"] as [String:Any])
+            }
+            else {
+                // push image to storage
+                var img_url = ""
+                var file_name = randomString(length: 6)
+                file_name = "claudia/" + file_name + ".png"
+                let storageRef = Storage.storage().reference().child(file_name)
+                let imgData = receiptView.image?.pngData()
+                let metaData = StorageMetadata()
+                metaData.contentType = "imge/png"
+                storageRef.putData(imgData!, metadata: metaData) { (metadata, err) in
+                    if err == nil{
+                        print("error in save img")
+                        storageRef.downloadURL(completion: { (url, error) in
+                            if error != nil{
+                                print("Failed to download url:", error!)
+                                return
+                            } else {
+                                //Do something with url
+                                print("success download url")
+                                img_url = url?.absoluteString ?? ""
+                                print(url!)
+                                print(img_url)
+                                // push data to database
+                                let ref = Database.database().reference()
+                                ref.child("claudia").childByAutoId().setValue(["amount":self.spendingTxt.text, "location":self.locationTxt.text, "receipt_url":img_url, "attribute":"-"] as [String:Any])
+                            }
+                        })
+                    } else {
+                        print("error in save image")
+                    }
                 }
             }
+            // dismiss current window
+            dismiss(animated: true, completion: nil)
+            self.navigationController?.popViewController(animated: true)
         }
-    
-        
-        
-//        // push data to database
-//        let ref = Database.database().reference()
-//        ref.child("claudia").childByAutoId().setValue(["amount":spendingTxt.text, "location":locationTxt.text, "receipt_url":img_url, "attribute":"-"] as [String:Any])
-        
     }
     @IBAction func importImage(_ sender: UIButton) {
         self.imagePicker.present(from:sender)
