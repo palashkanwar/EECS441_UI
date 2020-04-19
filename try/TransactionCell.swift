@@ -20,23 +20,31 @@ class TransactionCell: UITableViewCell {
     func setTransaction(transaction: Transaction) {
         if (transaction.attribute == "-") {
             amountLabel.text = "- " + transaction.amount
-            // Create a storage reference from the URL
-            let gsReference = Storage.storage().reference(forURL: transaction.receipt_url)
-            // Download the data, assuming a max size of 1MB (you can change this as necessary)
-            gsReference.getData(maxSize: 15 * 1024 * 1024) { data, error in
-                if error != nil {
-                print(error)
-                // Uh-oh, an error occurred!
-              } else {
-                // Data for "images/island.jpg" is returned
-                    print("try to set image")
-                    let image = UIImage(data: data!)
-                    self.receiptView.image = image
-              }
+            if transaction.receipt_url == "" {
+                receiptView.isHidden = true
+            }
+            else {
+                // Create a storage reference from the URL
+                let gsReference = Storage.storage().reference(forURL: transaction.receipt_url)
+                // Download the data, assuming a max size of 1MB (you can change this as necessary)
+                gsReference.getData(maxSize: 15 * 1024 * 1024) { data, error in
+                    if error != nil {
+                    print(error)
+                    // Uh-oh, an error occurred!
+                  } else {
+                    // Data for "images/island.jpg" is returned
+                        print("try to set image")
+                        let image = UIImage(data: data!)
+                        self.receiptView.image = image
+                  }
+                }
             }
         }
         else {
-            amountLabel.text = "add budget " + transaction.amount
+            amountLabel.text = "+ " + transaction.amount
+            amountLabel.textColor = UIColor.red
+            // center
+            receiptView.isHidden = true
         }
         
         locationLabel.text = transaction.location

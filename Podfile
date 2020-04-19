@@ -15,4 +15,5 @@ target 'try' do
   pod 'Firebase/Database'
   pod 'Firebase/Analytics'
   pod 'Firebase/Storage'
+  pod 'FirebaseUI/Storage'
 end

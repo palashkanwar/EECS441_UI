@@ -32,6 +32,8 @@ class summaryViewController: UIViewController, UITableViewDelegate, UITableViewD
 
     // create a cell for each table view row
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    
+        
         let transaction = transactions[indexPath.row]
         // create a new cell if needed or reuse an old one
         let cell = tableView.dequeueReusableCell(withIdentifier: "TransactionCell") as! TransactionCell
@@ -44,6 +46,23 @@ class summaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     // method to run when table view cell is tapped
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print("You tapped cell number \(indexPath.row).")
+        //tableView.deselectRow(at: indexPath, animated: true)
+        let temp_index = tableView.indexPathForSelectedRow?.row
+        if transactions[temp_index!].receipt_url != "" {
+            performSegue(withIdentifier: "showdetail", sender: self)
+        }
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier ==  "showdetail" {
+            //let selectedIndex = self.tableView.indexPath(for: sender as! UITableViewCell)!.row
+            // print("select index is ")
+            //print(selectedIndex)
+            let vc = segue.destination as! ShowDetailViewController
+            let temp_index = tableView.indexPathForSelectedRow?.row
+            print("temp index is")
+            print(temp_index)
+            vc.url_string = String((transactions[temp_index!].receipt_url))
+        }
     }
     // pass in data from DB 
     func loadData() {
@@ -85,6 +104,6 @@ class summaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         dismiss(animated: true, completion: nil)
         self.navigationController?.popViewController(animated: true)
     }
-
+    
         
 }

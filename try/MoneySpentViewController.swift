@@ -22,6 +22,7 @@ class MoneySpentViewController: UIViewController, UIImagePickerControllerDelegat
     @IBOutlet weak var receiptView: UIImageView!
     @IBOutlet weak var locationTxt: UITextField!
     @IBOutlet weak var warningLabel2: UILabel!
+    @IBOutlet weak var checkView: UIImageView!
     var imagePicker:ImagePicker!
     func passDataBack(data: String) {
         locationTxt.text = "\(data)"
@@ -34,6 +35,7 @@ class MoneySpentViewController: UIViewController, UIImagePickerControllerDelegat
         super.viewDidLoad()
         activitySpinner.isHidden = true
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
+        checkView.isHidden = true
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -74,7 +76,7 @@ class MoneySpentViewController: UIViewController, UIImagePickerControllerDelegat
             delegate?.passDataBack(data: spendingValue)
             
             // push data to database
-            if receiptView.image == nil {
+            if receiptView.image == checkView.image {
                 let ref = Database.database().reference()
                 ref.child("claudia").childByAutoId().setValue(["amount":self.spendingTxt.text, "location":self.locationTxt.text, "receipt_url":"", "attribute":"-"] as [String:Any])
             }
