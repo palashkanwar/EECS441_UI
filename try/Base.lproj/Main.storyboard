@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="waI-nx-3ml">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="waI-nx-3ml">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -109,12 +109,12 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="MM/DD/YYYY" textAlignment="natural" minimumFontSize="25" translatesAutoresizingMaskIntoConstraints="NO" id="Hx7-Do-pQX">
-                                <rect key="frame" x="20" y="522.5" width="245" height="45.5"/>
+                                <rect key="frame" x="20" y="524" width="245" height="44"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGB-mf-pEB">
-                                <rect key="frame" x="32" y="305.5" width="252" height="32"/>
+                                <rect key="frame" x="32" y="304" width="252" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="32" id="1XN-lh-sHJ"/>
                                 </constraints>
@@ -182,7 +182,7 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="$0.0" textAlignment="natural" minimumFontSize="24" translatesAutoresizingMaskIntoConstraints="NO" id="fVB-Pa-bUu">
-                                <rect key="frame" x="20" y="252" width="294" height="45.5"/>
+                                <rect key="frame" x="20" y="252" width="294" height="44"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <textInputTraits key="textInputTraits" keyboardType="numberPad"/>
@@ -797,19 +797,19 @@
             <point key="canvasLocation" x="667" y="1456"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Screen Shot 2020-03-21 at 2.15.35 PM" width="226" height="236"/>
+        <image name="Screen Shot 2020-03-21 at 2.20.31 PM" width="984" height="434"/>
+        <image name="arrowtriangle.left.square.fill" catalog="system" width="64" height="56"/>
+        <image name="location.fill" catalog="system" width="64" height="56"/>
+        <image name="mappin" catalog="system" width="52" height="64"/>
+        <image name="mic.fill" catalog="system" width="54" height="64"/>
+        <image name="placeholder" width="250" height="250"/>
+        <image name="plus.rectangle.fill" catalog="system" width="64" height="46"/>
+        <image name="rectangle.fill" catalog="system" width="64" height="46"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="5FA-Ct-dPQ"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
-    <resources>
-        <image name="Screen Shot 2020-03-21 at 2.15.35 PM" width="226" height="236"/>
-        <image name="Screen Shot 2020-03-21 at 2.20.31 PM" width="984" height="434"/>
-        <image name="arrowtriangle.left.square.fill" catalog="system" width="128" height="114"/>
-        <image name="location.fill" catalog="system" width="128" height="115"/>
-        <image name="mappin" catalog="system" width="105" height="128"/>
-        <image name="mic.fill" catalog="system" width="108" height="128"/>
-        <image name="placeholder" width="250" height="250"/>
-        <image name="plus.rectangle.fill" catalog="system" width="128" height="93"/>
-        <image name="rectangle.fill" catalog="system" width="128" height="93"/>
-    </resources>
 </document>

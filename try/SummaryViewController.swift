@@ -8,6 +8,7 @@
 import Foundation
 import UIKit
 import FirebaseDatabase
+import FirebaseStorage
 
 class summaryViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
@@ -51,17 +52,27 @@ class summaryViewController: UIViewController, UITableViewDelegate, UITableViewD
         ref.child("claudia").observe(DataEventType.value) { (snapshot) in
             for transaction in snapshot.children.allObjects as![DataSnapshot] {
                 let transactionObject = transaction.value as? [String:String]
-                let attribute = String((transactionObject?["location"])!)
+                
                 let amount = "$" + String((transactionObject?["amount"])!)
-            
                 let location = String((transactionObject?["location"])!)
-                let image = transactionObject?["image"]!
-                let tran_object = Transaction(amount: amount, location: location)
+                let attribute = String((transactionObject?["attribute"])!)
+                let download_url = String((transactionObject?["receipt_url"])!)
+                
+//                // Create a storage reference from the URL
+//                let gsReference = Storage.storage().reference(forURL: download_url)
+//                // Download the data, assuming a max size of 1MB (you can change this as necessary)
+//                gsReference.getData(maxSize: 1 * 1024 * 1024) { data, error in
+//                    if error != nil {
+//                    // Uh-oh, an error occurred!
+//                  } else {
+//                    // Data for "images/island.jpg" is returned
+//                    let image = UIImage(data: data!)
+//                  }
+//                }
+                
+                // let image = transactionObject?["image"]!
+                let tran_object = Transaction(amount: amount, location: location, receipt_url: download_url, attribute: attribute)
                 self.transactions.append(tran_object)
-               
-                
-                
-                
                 
                 self.tableView.reloadData()
 
