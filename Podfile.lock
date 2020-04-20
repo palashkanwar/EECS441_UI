@@ -1,4 +1,7 @@
 PODS:
+  - Charts (3.5.0):
+    - Charts/Core (= 3.5.0)
+  - Charts/Core (3.5.0)
   - Firebase/Analytics (6.20.0):
     - Firebase/Core
   - Firebase/Core (6.20.0):
@@ -90,6 +93,7 @@ PODS:
   - SDWebImage/Core (5.7.2)
 
 DEPENDENCIES:
+  - Charts
   - Firebase/Analytics
   - Firebase/Core
   - Firebase/Database
@@ -98,6 +102,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - Charts
     - Firebase
     - FirebaseAnalytics
     - FirebaseAuthInterop
@@ -119,6 +124,7 @@ SPEC REPOS:
     - SDWebImage
 
 SPEC CHECKSUMS:
+  Charts: 40a08591df1f8ad5c223ddedfb1a06da92f24f7c
   Firebase: fe7f74012742ab403451dd283e6909b8f1fb348a
   FirebaseAnalytics: 572e467f3d977825266e8ccd52674aa3e6f47eac
   FirebaseAuthInterop: a0f37ae05833af156e72028f648d313f7e7592e9
@@ -139,6 +145,6 @@ SPEC CHECKSUMS:
   PromisesObjC: c119f3cd559f50b7ae681fa59dc1acd19173b7e6
   SDWebImage: d9ea4959d99c52276dfada481987018fcaea3d58
 
-PODFILE CHECKSUM: fc57a34509b85cda33ad33ca906207ebbdd2d27b
+PODFILE CHECKSUM: 8f6a2468f97fef30d3398a720d14615a1f0d5410
 
 COCOAPODS: 1.9.0

@@ -12,6 +12,8 @@
 		6D13AF5724293FB800D71A4E /* SummaryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D13AF5624293FB800D71A4E /* SummaryViewController.swift */; };
 		6D3470ED244CD3C300FD0701 /* ShowDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6D3470EC244CD3C300FD0701 /* ShowDetailViewController.swift */; };
 		7C2FCFC0EA716772541FB7E1 /* Pods_try.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 905F4DCF814B39CAFBC7533A /* Pods_try.framework */; };
+		81031FB4244D7B9B00F09CE5 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81031FB3244D7B9B00F09CE5 /* ChartViewController.swift */; };
+		81031FB6244D7CFC00F09CE5 /* NSUIColor+Hex.swift in Sources */ = {isa = PBXBuildFile; fileRef = 81031FB5244D7CFC00F09CE5 /* NSUIColor+Hex.swift */; };
 		8134E8D62418495300925F47 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8134E8D52418495300925F47 /* AppDelegate.swift */; };
 		8134E8D82418495300925F47 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8134E8D72418495300925F47 /* SceneDelegate.swift */; };
 		8134E8DA2418495300925F47 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8134E8D92418495300925F47 /* ViewController.swift */; };
@@ -47,6 +49,8 @@
 		6D13AF5624293FB800D71A4E /* SummaryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SummaryViewController.swift; sourceTree = "<group>"; };
 		6D3470EC244CD3C300FD0701 /* ShowDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowDetailViewController.swift; sourceTree = "<group>"; };
 		720F1E8D595ADE1EA89DDC67 /* Pods-try.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-try.release.xcconfig"; path = "Target Support Files/Pods-try/Pods-try.release.xcconfig"; sourceTree = "<group>"; };
+		81031FB3244D7B9B00F09CE5 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
+		81031FB5244D7CFC00F09CE5 /* NSUIColor+Hex.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSUIColor+Hex.swift"; sourceTree = "<group>"; };
 		8134E8D22418495300925F47 /* try.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = try.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8134E8D52418495300925F47 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		8134E8D72418495300925F47 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -127,6 +131,8 @@
 				8134E8D52418495300925F47 /* AppDelegate.swift */,
 				8134E8D72418495300925F47 /* SceneDelegate.swift */,
 				8134E8D92418495300925F47 /* ViewController.swift */,
+				81031FB5244D7CFC00F09CE5 /* NSUIColor+Hex.swift */,
+				81031FB3244D7B9B00F09CE5 /* ChartViewController.swift */,
 				8134E8DB2418495300925F47 /* Main.storyboard */,
 				8134E8DE2418495400925F47 /* Assets.xcassets */,
 				8134E8E02418495400925F47 /* LaunchScreen.storyboard */,
@@ -334,12 +340,14 @@
 			buildActionMask = 2147483647;
 			files = (
 				817FA03224193071002292FD /* MoneyTrackViewController.swift in Sources */,
+				81031FB4244D7B9B00F09CE5 /* ChartViewController.swift in Sources */,
 				81DE092B2448D0990022987E /* TransactionCell.swift in Sources */,
 				81DE092D2448D30D0022987E /* Transaction.swift in Sources */,
 				6D3470ED244CD3C300FD0701 /* ShowDetailViewController.swift in Sources */,
 				81DB140D2447A927005BF392 /* AddBudgetViewController.swift in Sources */,
 				8134E8DA2418495300925F47 /* ViewController.swift in Sources */,
 				817FA0342419309D002292FD /* SetBudgetViewController.swift in Sources */,
+				81031FB6244D7CFC00F09CE5 /* NSUIColor+Hex.swift in Sources */,
 				6D13AF5724293FB800D71A4E /* SummaryViewController.swift in Sources */,
 				813F5875242879630051FC21 /* MapScreen.swift in Sources */,
 				8134E8D62418495300925F47 /* AppDelegate.swift in Sources */,

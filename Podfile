@@ -16,4 +16,5 @@ target 'try' do
   pod 'Firebase/Analytics'
   pod 'Firebase/Storage'
   pod 'FirebaseUI/Storage'
+  pod 'Charts'
 end

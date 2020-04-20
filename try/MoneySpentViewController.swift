@@ -17,6 +17,9 @@ import FirebaseStorage
 protocol canReceive {
     func passDataBack(data: Double)
 }
+class CellClass: UITableViewCell {
+    
+}
 
 class MoneySpentViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVAudioPlayerDelegate, canReceiveAddress, SFSpeechRecognizerDelegate {
     @IBOutlet weak var receiptView: UIImageView!
@@ -39,6 +42,9 @@ class MoneySpentViewController: UIViewController, UIImagePickerControllerDelegat
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         checkView.isHidden = true
         requestPermission()
+        tableView.delegate = self
+        tableView.dataSource = self
+        tableView.register(CellClass.self, forCellReuseIdentifier: "Cell")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -224,10 +230,71 @@ class MoneySpentViewController: UIViewController, UIImagePickerControllerDelegat
     }
     //******************************************//
     
+    @IBOutlet weak var btnSelectCategory: UIButton!
+    let transparentView = UIView()
+    let tableView = UITableView()
+    var category = ""
+    var selectedButton = UIButton()
+    
+    var dataSource = [String]()
+    @IBAction func onclickSelectCategory(_ sender: Any) {
+        dataSource = ["Food", "Entertainment", "Grocery", "Transportation", "Travel", "Education"]
+        selectedButton = btnSelectCategory
+        addTransparentView(frames: btnSelectCategory.frame)
+    }
+    func addTransparentView(frames: CGRect) {
+        let window = UIApplication.shared.keyWindow
+        transparentView.frame = window?.frame ?? self.view.frame
+        self.view.addSubview(transparentView)
+        
+        tableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height, width: frames.width, height: 0)
+        self.view.addSubview(tableView)
+        tableView.layer.cornerRadius = 5
+        
+        transparentView.backgroundColor = UIColor.black.withAlphaComponent(0.9)
+        tableView.reloadData()
+        let tapgesture = UITapGestureRecognizer(target: self, action: #selector(removeTransparentView))
+        transparentView.addGestureRecognizer(tapgesture)
+        transparentView.alpha = 0
+        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            self.transparentView.alpha = 0.5
+            self.tableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height + 5, width: frames.width, height: CGFloat(self.dataSource.count * 50))
+        }, completion: nil)
+    }
+    @objc func removeTransparentView() {
+        let frames = selectedButton.frame
+        UIView.animate(withDuration: 0.4, delay: 0.0, usingSpringWithDamping: 1.0, initialSpringVelocity: 1.0, options: .curveEaseInOut, animations: {
+            self.transparentView.alpha = 0
+            self.tableView.frame = CGRect(x: frames.origin.x, y: frames.origin.y + frames.height, width: frames.width, height: 0)
+        }, completion: nil)
+    }
+    
     
 }
 extension MoneySpentViewController:ImagePickerDelegate{
     func didSelect(image: UIImage?) {
         self.receiptView.image = image
+    }
+}
+
+extension MoneySpentViewController: UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataSource.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath)
+        cell.textLabel?.text = dataSource[indexPath.row]
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 50
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedButton.setTitle(dataSource[indexPath.row], for: .normal)
+        category = dataSource[indexPath.row]
+        removeTransparentView()
     }
 }
