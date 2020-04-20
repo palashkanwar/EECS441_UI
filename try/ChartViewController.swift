@@ -38,9 +38,6 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         entries.append(PieChartDataEntry(value: 30.0, label: "Food"))
         entries.append(PieChartDataEntry(value: 20.0, label: "Entertainment"))
         entries.append(PieChartDataEntry(value: 100.0, label: "Grocery"))
-        entries.append(PieChartDataEntry(value: 0.0, label: "Transportation"))
-        entries.append(PieChartDataEntry(value: 0.0, label: "Travel"))
-        entries.append(PieChartDataEntry(value: 0.0, label: "Education"))
         
         let dataSet = PieChartDataSet(entries: entries, label: "")
         
@@ -48,11 +45,11 @@ class ChartViewController: UIViewController, ChartViewDelegate {
         let c2 = NSUIColor(hex: 0xcdd9a1)
         let c3 = NSUIColor(hex: 0xb6cf89)
         let c4 = NSUIColor(hex: 0x62b177)
-        let c5 = NSUIColor(hex: 0x58a089)
-        let c6 = NSUIColor(hex: 0x41779e)
+//        let c5 = NSUIColor(hex: 0x58a089)
+//        let c6 = NSUIColor(hex: 0x41779e)
         let c7 = NSUIColor(hex: 0xDCEDC2)
     
-        dataSet.colors = [c1, c7,c2, c3, c4, c5, c6]
+        dataSet.colors = [c1, c7,c2, c3]
         dataSet.drawValuesEnabled = true
         
         pieView.data = PieChartData(dataSet: dataSet)
