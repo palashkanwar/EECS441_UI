@@ -32,15 +32,11 @@ class LoginViewController: UIViewController, GIDSignInDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        GIDSignIn.sharedInstance()?.delegate = self
         GIDSignIn.sharedInstance()?.presentingViewController = self
         // Do any additional setup after loading the view.
     }
     
-//    override func viewDidAppear(_ animated: Bool) {
-//        if userDefault.bool(forKey: "usersignedin") {
-//            performSegue(withIdentifier: <#T##String#>, sender: <#T##Any?#>)
-//        }
-//    }
     
     func createUser(email: String, password: String) {
         Auth.auth().createUser(withEmail: email, password: password) { (result, error) in
