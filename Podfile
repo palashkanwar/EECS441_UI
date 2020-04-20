@@ -17,4 +17,6 @@ target 'try' do
   pod 'Firebase/Storage'
   pod 'FirebaseUI/Storage'
   pod 'Charts'
+  pod 'Firebase/Auth'
+  pod 'GoogleSignIn'
 end
