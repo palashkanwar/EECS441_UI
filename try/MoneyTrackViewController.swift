@@ -8,8 +8,9 @@
 
 import UIKit
 import UserNotifications
+import FirebaseDatabase
 
-class MoneyTrackViewController: UIViewController, canReceive {
+class MoneyTrackViewController: UIViewController, canReceive, canReceiveBudget {
     
 
     @IBOutlet weak var AmountLabel: UILabel!
@@ -18,6 +19,13 @@ class MoneyTrackViewController: UIViewController, canReceive {
     var startDateValue = Date()
     var endDateValue = Date()
     var spending = 0.0
+    var addbudget = 0.0
+    
+    func passBudgetBack(data: Double) {
+        addbudget = data
+        budgetValue += addbudget
+        AmountLabel.text = "\(budgetValue)"
+    }
     
     func passDataBack(data: Double) {
         spending = data
@@ -28,7 +36,7 @@ class MoneyTrackViewController: UIViewController, canReceive {
         }
         if budgetValue < 20 {
             AmountLabel.textColor = UIColor.red
-            AmountLabel.font = AmountLabel.font.withSize(60)
+            AmountLabel.font = AmountLabel.font.withSize(50)
             let content = UNMutableNotificationContent()
             content.title = "Circle Pay Warning"
             content.body = "You have \(budgetValue) left"
@@ -39,6 +47,7 @@ class MoneyTrackViewController: UIViewController, canReceive {
             UNUserNotificationCenter.current().add(request, withCompletionHandler: nil)
         }
     }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         AmountLabel.text = "\(budgetValue)"
@@ -46,6 +55,15 @@ class MoneyTrackViewController: UIViewController, canReceive {
             createAlert(title: "End Session", message: "The current session ends. Please start a new session.")
         }
     }
+    
+    @IBAction func FinishBtn(_ sender: Any) {
+        let ref = Database.database().reference().child("claudia")
+        ref.removeValue()
+    }
+    @IBAction func FinishtoSummary(_ sender: Any) {
+        performSegue(withIdentifier: "ToSummary", sender: self)
+    }
+    
     @IBAction func addButton(_ sender: Any) {
         performSegue(withIdentifier: "toMoneySpent", sender: self)
     }
@@ -55,7 +73,10 @@ class MoneyTrackViewController: UIViewController, canReceive {
             let vc = segue.destination as! MoneySpentViewController
             vc.delegate = self
         }
-        
+        if segue.identifier == "toAddBudget" {
+            let vc = segue.destination as! AddBudgetViewController
+            vc.delegate = self
+        }
     }
  
     func createAlert(title: String, message: String) {

@@ -8,6 +8,12 @@
 	<string>This app finds your location using GPS</string>
 	<key>NSSpeechRecognitionUsageDescription</key>
 	<string>We need to analyze and transcribe your audio. We hope that&apos;s cool.</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We need access to your microphone.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>This app wants to take photos.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>This app wants to use your photos.</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
