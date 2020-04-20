@@ -961,38 +961,103 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="zOz-xF-j6D">
-                                <rect key="frame" x="132" y="410" width="149" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E8W-mP-3zn">
-                                <rect key="frame" x="132" y="528" width="149" height="34"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
-                            </textField>
-                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="j9a-AW-kUG" customClass="GIDSignInButton">
-                                <rect key="frame" x="132" y="696" width="149" height="88"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="j9a-AW-kUG" customClass="GIDSignInButton">
+                                <rect key="frame" x="127" y="559" width="149" height="88"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ATG-2o-s1u">
-                                <rect key="frame" x="158" y="610" width="96" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Sign In"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please login" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="F4s-z6-Vnp">
+                                <rect key="frame" x="62" y="170" width="352" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="iQf-cN-1Yw"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="43"/>
+                                <color key="textColor" red="0.3294117647" green="0.47450980390000003" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Circle Pay" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J2o-1Q-ieV">
+                                <rect key="frame" x="90" y="239" width="223" height="82"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="82" id="6MY-kH-bJ1"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Bold" family="Chalkboard SE" pointSize="43"/>
+                                <color key="textColor" red="0.96078431369999995" green="0.72549019609999998" blue="0.4431372549" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="icon" translatesAutoresizingMaskIntoConstraints="NO" id="z4Q-RP-mAa">
+                                <rect key="frame" x="80" y="342" width="254" height="150"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IRO-wg-ZEN">
+                                <rect key="frame" x="101" y="543" width="200" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38.5" id="Ez1-Cs-dFg"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
+                                <color key="tintColor" red="0.52156862749999999" green="0.63921568630000003" blue="0.57254901960000004" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
+                                <state key="normal" title="Confirm" backgroundImage="rectangle.fill" catalog="system">
+                                    <color key="titleColor" red="1" green="0.92549019610000005" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
                                 <connections>
-                                    <segue destination="51F-0n-jzJ" kind="show" id="4O3-hs-wRf"/>
+                                    <segue destination="51F-0n-jzJ" kind="show" id="RgV-Hn-DaL"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ufv-Qh-cQi">
+                                <rect key="frame" x="101" y="606" width="200" height="36"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="38.5" id="trm-bC-d5N"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="20"/>
+                                <color key="tintColor" red="0.96078431369999995" green="0.72549019609999998" blue="0.4431372549" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="Sign Out" backgroundImage="rectangle.fill" catalog="system">
+                                    <color key="titleColor" red="1" green="0.92549019610000005" blue="0.78039215689999997" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="btnSignOutAction:" destination="1o4-sf-8lS" eventType="touchUpInside" id="Lbn-x2-2ag"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Welcome!" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wg4-Xv-5CL">
+                                <rect key="frame" x="31" y="101" width="352" height="61"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="61" id="W2k-js-ayX"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="ChalkboardSE-Regular" family="Chalkboard SE" pointSize="43"/>
+                                <color key="textColor" red="0.3294117647" green="0.47450980390000003" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="wg4-Xv-5CL" firstAttribute="leading" secondItem="Jkg-XC-ZL7" secondAttribute="leading" constant="31" id="0FV-f8-02k"/>
+                            <constraint firstItem="Jkg-XC-ZL7" firstAttribute="bottom" secondItem="j9a-AW-kUG" secondAttribute="bottom" constant="215" id="10e-eR-ZwO"/>
+                            <constraint firstItem="z4Q-RP-mAa" firstAttribute="leading" secondItem="Jkg-XC-ZL7" secondAttribute="leading" constant="80" id="A6Q-nG-TR3"/>
+                            <constraint firstItem="F4s-z6-Vnp" firstAttribute="leading" secondItem="Jkg-XC-ZL7" secondAttribute="leading" constant="62" id="CBh-nA-BaK"/>
+                            <constraint firstItem="j9a-AW-kUG" firstAttribute="centerX" secondItem="Ufv-Qh-cQi" secondAttribute="centerX" id="CGa-Jv-WyG"/>
+                            <constraint firstItem="IRO-wg-ZEN" firstAttribute="top" secondItem="z4Q-RP-mAa" secondAttribute="bottom" constant="50" id="CQX-bh-cCx"/>
+                            <constraint firstItem="wg4-Xv-5CL" firstAttribute="centerX" secondItem="z4Q-RP-mAa" secondAttribute="centerX" id="HCj-9i-1JQ"/>
+                            <constraint firstItem="z4Q-RP-mAa" firstAttribute="top" secondItem="J2o-1Q-ieV" secondAttribute="bottom" constant="21" id="LwO-A3-pFD"/>
+                            <constraint firstItem="J2o-1Q-ieV" firstAttribute="centerX" secondItem="IRO-wg-ZEN" secondAttribute="centerX" id="PEV-Ox-B8O"/>
+                            <constraint firstItem="Ufv-Qh-cQi" firstAttribute="top" secondItem="IRO-wg-ZEN" secondAttribute="bottom" constant="24.5" id="Pf2-7y-lfU"/>
+                            <constraint firstItem="IRO-wg-ZEN" firstAttribute="trailing" secondItem="Ufv-Qh-cQi" secondAttribute="trailing" id="SAZ-gc-iiv"/>
+                            <constraint firstItem="F4s-z6-Vnp" firstAttribute="trailing" secondItem="Jkg-XC-ZL7" secondAttribute="trailing" id="TbN-cE-YD5"/>
+                            <constraint firstItem="wg4-Xv-5CL" firstAttribute="top" secondItem="Jkg-XC-ZL7" secondAttribute="top" constant="57" id="XME-SP-oha"/>
+                            <constraint firstItem="j9a-AW-kUG" firstAttribute="top" secondItem="z4Q-RP-mAa" secondAttribute="bottom" constant="67" id="cz3-Gn-Vcl"/>
+                            <constraint firstItem="J2o-1Q-ieV" firstAttribute="top" secondItem="F4s-z6-Vnp" secondAttribute="bottom" constant="8" id="hH4-6k-46j"/>
+                            <constraint firstItem="IRO-wg-ZEN" firstAttribute="leading" secondItem="Jkg-XC-ZL7" secondAttribute="leading" constant="101" id="hbb-ev-h2Z"/>
+                            <constraint firstItem="IRO-wg-ZEN" firstAttribute="leading" secondItem="Ufv-Qh-cQi" secondAttribute="leading" id="jDD-fO-0WG"/>
+                            <constraint firstItem="wg4-Xv-5CL" firstAttribute="centerX" secondItem="cY3-ZY-eNe" secondAttribute="centerX" id="jEd-qe-ctr"/>
+                            <constraint firstItem="F4s-z6-Vnp" firstAttribute="top" secondItem="wg4-Xv-5CL" secondAttribute="bottom" constant="8" id="kEi-I3-MzW"/>
+                            <constraint firstItem="j9a-AW-kUG" firstAttribute="leading" secondItem="Jkg-XC-ZL7" secondAttribute="leading" constant="127" id="mlw-Y1-tEu"/>
+                            <constraint firstItem="Jkg-XC-ZL7" firstAttribute="trailing" secondItem="J2o-1Q-ieV" secondAttribute="trailing" constant="101" id="wvm-F9-dDT"/>
+                            <constraint firstItem="J2o-1Q-ieV" firstAttribute="leading" secondItem="Jkg-XC-ZL7" secondAttribute="leading" constant="90" id="x3t-XE-5Vv"/>
+                            <constraint firstItem="Jkg-XC-ZL7" firstAttribute="bottom" secondItem="Ufv-Qh-cQi" secondAttribute="bottom" constant="218.5" id="xja-7t-c4c"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="Jkg-XC-ZL7"/>
                     </view>
                     <connections>
-                        <outlet property="email" destination="zOz-xF-j6D" id="TZP-SM-KLa"/>
-                        <outlet property="password" destination="E8W-mP-3zn" id="B9n-70-9th"/>
+                        <outlet property="btn_sign_out" destination="Ufv-Qh-cQi" id="vk1-og-XMi"/>
+                        <outlet property="confirmBtn" destination="IRO-wg-ZEN" id="hkb-6y-99o"/>
+                        <outlet property="nameLabel" destination="F4s-z6-Vnp" id="H4x-zO-6u4"/>
+                        <outlet property="signinBtn" destination="j9a-AW-kUG" id="9ur-fX-c30"/>
+                        <outlet property="welcomeLabel" destination="wg4-Xv-5CL" id="l3Y-Ip-Z5t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yLR-wm-XZu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1001,7 +1066,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="4O3-hs-wRf"/>
+        <segue reference="RgV-Hn-DaL"/>
     </inferredMetricsTieBreakers>
     <color key="tintColor" cyan="1" magenta="0.63" yellow="0.12" black="0.67000000000000004" alpha="1" colorSpace="custom" customColorSpace="genericCMYKColorSpace"/>
     <resources>
