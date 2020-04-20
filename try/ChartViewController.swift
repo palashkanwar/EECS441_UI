@@ -9,18 +9,22 @@
 import UIKit
 import Charts
 
-class ChartViewController: UIViewController {
+class ChartViewController: UIViewController, ChartViewDelegate {
 
     @IBOutlet var pieView: PieChartView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
-        
+        pieView.delegate = self
         setupPieChart()
     }
+
     
     func setupPieChart() {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .percent
+        pieView.data?.setValueFormatter(formatter as! IValueFormatter)
         pieView.chartDescription?.enabled = false
         pieView.drawHoleEnabled = false
         pieView.rotationAngle = 0
@@ -33,10 +37,10 @@ class ChartViewController: UIViewController {
         entries.append(PieChartDataEntry(value: 50.0, label: "Budget"))
         entries.append(PieChartDataEntry(value: 30.0, label: "Food"))
         entries.append(PieChartDataEntry(value: 20.0, label: "Entertainment"))
-        entries.append(PieChartDataEntry(value: 10.0, label: "Grocery"))
-        entries.append(PieChartDataEntry(value: 40.0, label: "Transportation"))
-        entries.append(PieChartDataEntry(value: 40.0, label: "Travel"))
-        entries.append(PieChartDataEntry(value: 40.0, label: "Education"))
+        entries.append(PieChartDataEntry(value: 100.0, label: "Grocery"))
+        entries.append(PieChartDataEntry(value: 0.0, label: "Transportation"))
+        entries.append(PieChartDataEntry(value: 0.0, label: "Travel"))
+        entries.append(PieChartDataEntry(value: 0.0, label: "Education"))
         
         let dataSet = PieChartDataSet(entries: entries, label: "")
         
@@ -49,9 +53,10 @@ class ChartViewController: UIViewController {
         let c7 = NSUIColor(hex: 0xDCEDC2)
     
         dataSet.colors = [c1, c7,c2, c3, c4, c5, c6]
-        dataSet.drawValuesEnabled = false
+        dataSet.drawValuesEnabled = true
         
         pieView.data = PieChartData(dataSet: dataSet)
+        pieView.animate(xAxisDuration: 2)
     }
 
     override func didReceiveMemoryWarning() {
