@@ -18,24 +18,27 @@ protocol canReceive {
     func passDataBack(data: Double)
 }
 
-class MoneySpentViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVAudioPlayerDelegate, canReceiveAddress {
+class MoneySpentViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate, AVAudioPlayerDelegate, canReceiveAddress, SFSpeechRecognizerDelegate {
     @IBOutlet weak var receiptView: UIImageView!
     @IBOutlet weak var locationTxt: UITextField!
     @IBOutlet weak var warningLabel2: UILabel!
     @IBOutlet weak var checkView: UIImageView!
-    var imagePicker:ImagePicker!
-    func passDataBack(data: String) {
-        locationTxt.text = "\(data)"
-    }
+    @IBOutlet weak var activitySpinner: UILabel!
     var delegate:canReceive?
     @IBOutlet weak var spendingTxt: UITextField!
     var spendingValueFinal = 0.00
     @IBOutlet weak var warningLabel: UILabel!
+    var imagePicker:ImagePicker!
+    func passDataBack(data: String) {
+        locationTxt.text = "\(data)"
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
+        numberFormatter.numberStyle = .spellOut
         activitySpinner.isHidden = true
         self.imagePicker = ImagePicker(presentationController: self, delegate: self)
         checkView.isHidden = true
+        requestPermission()
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -125,45 +128,96 @@ class MoneySpentViewController: UIViewController, UIImagePickerControllerDelegat
     //******************************************//
     
     // record number
-    @IBOutlet weak var activitySpinner: UIActivityIndicatorView!
-    var audioPlayer: AVAudioPlayer!
-    func audioPlayerDidFinishPlaying(_ player: AVAudioPlayer, successfully flag: Bool) {
-        player.stop()
-        activitySpinner.stopAnimating()
-        activitySpinner.isHidden = true
-    }
-    func requestSpeechAuth() {
-        SFSpeechRecognizer.requestAuthorization { authStatus in
-            if authStatus == SFSpeechRecognizerAuthorizationStatus.authorized {
-                if let path = Bundle.main.url(forResource: "test", withExtension: "m4a") {
-                    do {
-                        let sound = try AVAudioPlayer(contentsOf: path)
-                        self.audioPlayer = sound
-                        self.audioPlayer.delegate = self
-                        sound.play()
-                    } catch {
-                        print("Error!")
-                    }
-                    let recognizer = SFSpeechRecognizer()
-                    let request = SFSpeechURLRecognitionRequest(url: path)
-                    recognizer?.recognitionTask(with: request) {(result, error) in
-                        if let error = error {
-                            print("There was an error:\(error)")
-                        } else {
-                            self.spendingTxt.text = result?.bestTranscription.formattedString ?? "0"
-                        }
-                    }
+    @IBOutlet weak var btn_start: UIButton!
+    let audioEngin = AVAudioEngine()
+    let speechReconizer:SFSpeechRecognizer? = SFSpeechRecognizer()
+    let request = SFSpeechAudioBufferRecognitionRequest()
+    var task : SFSpeechRecognitionTask!
+    var isStart: Bool = false
+    let numberFormatter = NumberFormatter()
+    func requestPermission() {
+        self.btn_start.isEnabled = false
+        SFSpeechRecognizer.requestAuthorization { (authState) in
+            OperationQueue.main.addOperation {
+                if authState == .authorized {
+                    self.btn_start.isEnabled = true
+                } else if authState == .denied {
+                    self.alertView(message: "User denied the permission.")
+                } else if authState == .notDetermined {
+                    self.alertView(message: "In user phone, there is no speech recognization.")
+                } else if authState == .restricted {
+                    self.alertView(message: "User has been restricted for using the speech recognization.")
                 }
             }
         }
     }
-    @IBAction func recordingBtn(_ sender: Any) {
-        // show the spinner
-        activitySpinner.isHidden = false
-        activitySpinner.startAnimating()
+    
+    @IBAction func btn_start_stop(_ sender: Any) {
+        isStart = !isStart
         
-        requestSpeechAuth()
+        if isStart {
+            startSpeechRecognization()
+            btn_start.tintColor = .systemGreen
+            activitySpinner.isHidden = false
+        } else {
+            cancelSpeechRecognization()
+            btn_start.tintColor = .systemOrange
+            activitySpinner.isHidden = true
+        }
     }
+    func startSpeechRecognization(){
+        let node = audioEngin.inputNode
+        let recordingFormat = node.outputFormat(forBus: 0)
+        node.installTap(onBus: 0, bufferSize: 1024, format: recordingFormat) { (buffer, _) in
+            self.request.append(buffer)
+        }
+        
+        audioEngin.prepare()
+        do {
+            try audioEngin.start()
+        } catch let error {
+            alertView(message: "Error comes here for starting the audio listner = \(error.localizedDescription)")
+        }
+        
+        guard let myRecognization = SFSpeechRecognizer() else {
+            self.alertView(message: "Recognization is not allowed on your device.")
+            return
+        }
+        if !myRecognization.isAvailable {
+            self.alertView(message: "Recognization is free right now. Please try it later some time.")
+        }
+        task = speechReconizer?.recognitionTask(with: request, resultHandler: { (response, error) in
+            guard let response = response else {
+                if error != nil {
+                    self.alertView(message: error?.localizedDescription ?? "")
+                } else {
+                    self.alertView(message: "Problem is giving the response")
+                }
+                return
+            }
+            let message = response.bestTranscription.formattedString
+            self.spendingTxt.text = message
+            
+        })
+    }
+    
+    func cancelSpeechRecognization(){
+        task.finish()
+        task.cancel()
+        task = nil
+        request.endAudio()
+        audioEngin.stop()
+        audioEngin.inputNode.removeTap(onBus: 0)
+    }
+    
+    func alertView(message: String) {
+        let controller = UIAlertController.init(title: "Error occurred!", message:message, preferredStyle: .alert)
+        controller.addAction(UIAlertAction(title: "OK", style: .default, handler: { (_) in
+            controller.dismiss(animated: true, completion: nil)
+        }))
+        self.present(controller, animated: true, completion: nil)
+    }
+    
     func randomString(length: Int) -> String {
       let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
       return String((0..<length).map{ _ in letters.randomElement()! })

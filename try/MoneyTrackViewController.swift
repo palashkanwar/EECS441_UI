@@ -36,7 +36,7 @@ class MoneyTrackViewController: UIViewController, canReceive, canReceiveBudget {
         }
         if budgetValue < 20 {
             AmountLabel.textColor = UIColor.red
-            AmountLabel.font = AmountLabel.font.withSize(60)
+            AmountLabel.font = AmountLabel.font.withSize(50)
             let content = UNMutableNotificationContent()
             content.title = "Circle Pay Warning"
             content.body = "You have \(budgetValue) left"

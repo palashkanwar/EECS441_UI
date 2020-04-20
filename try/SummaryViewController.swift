@@ -54,13 +54,8 @@ class summaryViewController: UIViewController, UITableViewDelegate, UITableViewD
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier ==  "showdetail" {
-            //let selectedIndex = self.tableView.indexPath(for: sender as! UITableViewCell)!.row
-            // print("select index is ")
-            //print(selectedIndex)
             let vc = segue.destination as! ShowDetailViewController
             let temp_index = tableView.indexPathForSelectedRow?.row
-            print("temp index is")
-            print(temp_index)
             vc.url_string = String((transactions[temp_index!].receipt_url))
         }
     }
@@ -76,18 +71,6 @@ class summaryViewController: UIViewController, UITableViewDelegate, UITableViewD
                 let location = String((transactionObject?["location"])!)
                 let attribute = String((transactionObject?["attribute"])!)
                 let download_url = String((transactionObject?["receipt_url"])!)
-                
-//                // Create a storage reference from the URL
-//                let gsReference = Storage.storage().reference(forURL: download_url)
-//                // Download the data, assuming a max size of 1MB (you can change this as necessary)
-//                gsReference.getData(maxSize: 1 * 1024 * 1024) { data, error in
-//                    if error != nil {
-//                    // Uh-oh, an error occurred!
-//                  } else {
-//                    // Data for "images/island.jpg" is returned
-//                    let image = UIImage(data: data!)
-//                  }
-//                }
                 
                 // let image = transactionObject?["image"]!
                 let tran_object = Transaction(amount: amount, location: location, receipt_url: download_url, attribute: attribute)
